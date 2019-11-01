@@ -9,12 +9,13 @@ import kotlinx.android.synthetic.main.tmdb_view.*
 
 class TMDbView : AppCompatActivity(), TMDbMVPContract.TMDbView {
 
+    private val searchResult = ArrayList<Result>()
     private lateinit var tmDbRecyclerAdapter: TMDbRecyclerAdapter
     private var resultList = ArrayList<Result>()
     private lateinit var tmDbPresenter: TMDbMVPContract.TMDbPresenter
 
     override fun setUpRecyclerView() {
-        tmDbRecyclerAdapter = TMDbRecyclerAdapter(resultList)
+        tmDbRecyclerAdapter = TMDbRecyclerAdapter(searchResult)
         recyclerView.adapter = tmDbRecyclerAdapter
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
     }
@@ -23,8 +24,9 @@ class TMDbView : AppCompatActivity(), TMDbMVPContract.TMDbView {
         tmDbPresenter.getMovieList(edtUserMovie.text.toString())
     }
 
-    override fun movieListReceived(movieList: List<Result>) {
-        resultList.add(movieList)
+    override fun movieListReceived(movieList : ArrayList<Result>) {
+        resultList = movieList
+        searchResult.addAll(resultList)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +36,10 @@ class TMDbView : AppCompatActivity(), TMDbMVPContract.TMDbView {
         tmDbPresenter = TMDbPresenter(this)
 
         setUpRecyclerView()
+//        tmDbPresenter.searchButtonClicked()
+
+        searchResult.addAll(resultList)
 
         btnSearch.setOnClickListener { tmDbPresenter.searchButtonClicked() }
     }
 }
-

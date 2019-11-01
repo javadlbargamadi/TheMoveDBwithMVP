@@ -11,7 +11,7 @@ class TMDbPresenter(private val tmDbView: TMDbMVPContract.TMDbView) :
         tmDbModel.fetchMovieList(movieName)
     }
 
-    override fun onMovieListReceived(movieList: List<Result>) {
+    override fun onMovieListReceived(movieList: ArrayList<Result>) {
         tmDbView.movieListReceived(movieList)
     }
 

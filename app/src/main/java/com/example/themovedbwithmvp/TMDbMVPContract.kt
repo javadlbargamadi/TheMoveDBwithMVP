@@ -12,12 +12,12 @@ interface TMDbMVPContract {
         fun setUpRecyclerView()
         fun getMovieName()
         //        fun searchButtonClicked()
-        fun movieListReceived(movieList: List<Result>)
+        fun movieListReceived(movieList: ArrayList<Result>)
     }
 
     interface TMDbPresenter {
         fun getMovieList(movieName: String)
-        fun onMovieListReceived(movieList: List<Result>)
+        fun onMovieListReceived(movieList: ArrayList<Result>)
         fun searchButtonClicked()
     }
 }

@@ -8,7 +8,7 @@ import com.example.themovedbwithmvp.MovieListClass.Result
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recycler_item.view.*
 
-class TMDbRecyclerAdapter(val resultList: List<Result>) :
+class TMDbRecyclerAdapter(private val resultList: List<Result>) :
     RecyclerView.Adapter<TMDbRecyclerAdapter.TMDbRecyclerViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TMDbRecyclerViewHolder {
         return TMDbRecyclerViewHolder(
